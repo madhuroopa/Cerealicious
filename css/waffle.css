@@ -1,0 +1,214 @@
+.cell {
+    stroke: #fff;
+}
+
+.chart {
+    float: left;
+    margin-right: 50px;
+    margin-left: 20px;
+    margin-top: 40px;
+    height: 300px;
+}
+
+.dynamic_chart {
+    float: left;
+    margin-top: 30px;
+    margin-right: 90px;
+    margin-left: 90px;
+    height: 300px;
+}
+
+.carbs {
+    fill: #264653;
+}
+
+.fat {
+    fill: #2A9D85;
+}
+
+.sugar {
+    fill: #E9C46A;
+}
+
+.protein {
+    fill: #F4A261;
+}
+
+.fiber {
+    fill: #E76751;
+}
+
+.Soy {
+    fill: #264653;
+}
+
+.Almond {
+    fill: #2A9D85;
+}
+
+.Oat {
+    fill: #E9C46A;
+}
+
+.Coconut {
+    fill: #F4A261;
+}
+
+.Whole {
+    fill: #264653;
+}
+
+.One_Percent_Reduced {
+    fill: #2A9D85;
+}
+
+.Two_Percent_Reduced {
+    fill: #E9C46A;
+}
+
+.Fat_Free {
+    fill: #F4A261;
+}
+
+.Oats {
+    fill: #264653;
+}
+
+.Corn {
+    fill: #2A9D85;
+}
+
+.Wheat {
+    fill: #E9C46A;
+}
+
+.Rice {
+    fill: #F4A261;
+}
+
+.tooltip {
+    position: absolute;
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.legend {
+    float: left;
+    margin-top: 120px;
+    margin-bottom: 100px;
+}
+
+.dynamic_legend {
+    float: left;
+    margin-top: 50px;
+    margin-left: 100px;
+    margin-bottom: 100px;
+}
+
+.legend-item {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+}
+
+.legend-label {
+    font-size: 18px;
+}
+
+.chart {
+    float: left;
+    margin-right: 50px;
+    margin-top: px;
+}
+
+.chart-heading {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    margin-left: 80px;
+}
+
+.dropdown-container {
+    clear: both;
+    margin-top: 20px;
+    margin-left: 80px;
+}
+
+.dropdown2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 8px;
+}
+
+.dropdown1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+    padding: 8px;
+}
+
+.heading {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: -10px;
+    margin-left: 80px;
+    margin-top: 50px;
+    color: #264653;
+}
+
+.button-container {
+    clear: both;
+    margin-top: 60px;
+    margin-left: 20px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e39714;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #e14815;
+}
+
+.explanation-frame {
+    position: fixed;
+    top: 20%;
+    right: 2%;
+    width: 350px;
+    height: 75%;
+    background-color: #f1f1f1;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.explanation-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.explanation-text {
+    font-size: 16px;
+    line-height: 1.5;
+}

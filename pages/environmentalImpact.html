@@ -1,0 +1,166 @@
+<!-- Code from d3-graph-gallery.com -->
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Which milk to choose?</title>
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<div style="padding-left: 10%;">
+<h1 >Which milk to choose?</h1>
+<h3 >Environmental impact of one glass (200ml) milk</h4>
+  
+</div>
+<!-- Add  buttons -->
+<p style="padding-left: 150px; padding-top: 5px;">
+<button onclick="update('Land use')">Land use</button>
+<button onclick="update('Emissions')">Emissions</button>
+<button onclick="update('Water usage')">Water usage</button>
+<a href="../index.html" style="margin-left: 200px;"  class="button">Home</a>
+</p>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+<style>
+body {
+      overflow: hidden;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #e39714;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #e14815;
+    }
+  </style>
+
+<script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 20, right: 20, bottom: 100, left: 150},
+    width = 860 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Initialize the X axis
+var x = d3.scaleBand()
+  .range([ 0, width ])
+  .padding(1);
+var xAxis = svg.append("g")
+  .attr("transform", "translate(0," + height + ")")
+
+// Add label to X axis
+var xAxisLabel = svg.append("text")
+  .attr("x", width / 2)
+  .attr("y", height + margin.bottom - 60)
+  .attr("dy", "1em")
+  .style("text-anchor", "middle")
+  .attr("font-size", "14px")
+  .text("Milk Type");
+
+
+// Initialize the Y axis
+var y = d3.scaleLinear()
+  .range([ height, 0]);
+var yAxis = svg.append("g")
+  .attr("class", "myYaxis")
+  .attr("font-size", "14px");
+
+
+
+// Add label to Y axis
+var yAxisLabel = svg.append("text")
+  .attr("transform", "rotate(-90)")
+  .attr("y", -margin.left)
+  .attr("x", -height / 2)
+  .attr("dy", "1em")
+  .style("text-anchor", "middle");
+
+
+// A function that create / update the plot for a given variable:
+function update(selectedVar) {
+  // Parse the Data
+  d3.csv("e1.csv", function(data) {
+    // X axis
+    x.domain(data.map(function(d) { return d.group; }))
+    xAxis.transition().duration(1000).call(d3.axisBottom(x))
+
+    // Add Y axis
+    y.domain([0, d3.max(data, function(d) { return +d[selectedVar] + 2 }) ]);
+    yAxis.transition().duration(1000).call(d3.axisLeft(y));
+
+    // Update Y axis label
+    if (selectedVar === "Land use") {
+      yAxisLabel.text("Land Use (sq m)");
+    } else if (selectedVar === "Emissions") {
+      yAxisLabel.text("Emissions (Kg)");
+    } else if (selectedVar === "Water usage") {
+      yAxisLabel.text("Water Usage (L)");
+    } else {
+      yAxisLabel.text("Term");
+    }
+    // Rotate Y axis label
+    yAxisLabel.attr("transform", "rotate(0)")
+      .attr("y", height / 2)
+      .attr("x", margin.left - 230)
+      .attr("dy", "1em")
+      .attr("font-size", "14px")
+      .style("text-anchor", "middle");
+
+
+    // variable u: map data to existing circle
+    var j = svg.selectAll(".myLine")
+      .data(data)
+    // update lines
+    j
+      .enter()
+      .append("line")
+      .attr("class", "myLine")
+      .merge(j)
+      .transition()
+      .duration(1000)
+        .attr("x1", function(d) { console.log(x(d.group)) ; return x(d.group); })
+        .attr("x2", function(d) { return x(d.group); })
+        .attr("y1", y(0))
+        .attr("y2", function(d) { return y(d[selectedVar]); })
+        .attr("stroke", "grey")
+
+
+    // variable u: map data to existing circle
+    var u = svg.selectAll("circle")
+      .data(data)
+    // update bars
+    u
+      .enter()
+      .append("circle")
+      .merge(u)
+      .transition()
+      .duration(1000)
+        .attr("cx", function(d) { return x(d.group); })
+        .attr("cy", function(d) { return y(d[selectedVar]); })
+        .attr("r", 8)
+        .attr("fill", "#F4A261");
+  })
+}
+
+
+// Initialize plot
+update('Land use')
+
+</script>

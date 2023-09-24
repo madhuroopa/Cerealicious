@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+  <title>Rectangle Waffle Charts</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <link href="../css/waffle.css" rel="stylesheet" />
+</head>
+
+<body>
+  <h1 class="heading">Delicious Duos: A Waffle Chart Exploration of Milk and Cereal Constituents</h1>
+  <div class="button-container">
+    <a href="../index.html" class="button">Home</a>
+  </div>
+  <div class="chart">
+    <div class="chart-heading">Dairy Based Milk</div>
+    <div id="chart1"></div>
+  </div>
+  <div class="chart">
+    <div class="chart-heading">Plant-Based Milk</div>
+    <div id="chart2"></div>
+  </div>
+  <div class="chart">
+    <div class="chart-heading">Cereals</div>
+    <div id="chart3"></div>
+  </div>
+  <div class="legend">
+    <div class="legend-item">
+      <div class="legend-color" style="background-color: #264653;"></div>
+      <div class="legend-label">Carbs</div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background-color: #2A9D85;"></div>
+      <div class="legend-label">Fat</div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background-color: #E9C46A;"></div>
+      <div class="legend-label">Sugar</div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background-color: #F4A261;"></div>
+      <div class="legend-label">Protein</div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background-color: #E76751;"></div>
+      <div class="legend-label">Fiber</div>
+    </div>
+  </div>
+  <div class="dropdown-container">
+    <select id="dropdown2" class="dropdown2">
+      <option value="">-- Select a breakfast item --</option>
+      <option value="Plant Based">Plant-Based Milk</option>
+      <option value="Diary Based">Dairy Milk</option>
+      <option value="cereals">Cereals</option>
+    </select>
+    <select id="dropdown1" class="dropdown1">
+      <option value="">-- Select a nutrient --</option>
+      <option value="fat">Fats</option>
+      <option value="carbs">Carbs</option>
+      <option value="sugar">Sugar</option>
+      <option value="fiber">Fiber</option>
+      <option value="protein">Protein</option>
+      <option value="calcium">Calcium</option>
+    </select>
+  </div>
+  <div class="dynamic_chart">
+  </div>
+  <div id="chart-frame"></div>
+  <div class="dynamic_legend">
+  </div>
+  <div class="explanation-frame">
+    <div class="explanation-text">
+      In this visualization, we can analyze the nutrition proportions for different milk types and cereals. For milk
+      types, the serving size is 240 ml. For Cereal types, the serving size is around 40 grams. By calculating the
+      proportions of carbs, fiber, protein, etc in relation to the sum of serving sizes of respective milk or cereal
+      types, we obtain a standardized measure that allows us to compare the relative contribution of these nutrients
+      across different cereals and milk types.
+      <div class="explanation-title">
+        <p>Dynamic Waffle Chart</p>
+      </div>
+      Based on the user's selections from the dropdown menus, a new waffle chart is generated. This chart illustrates
+      the proportion of the selected nutrient in different types of the chosen breakfast item.
+      <div class="explanation-title">
+        <p>Radar Chart</p>
+      </div>
+      To view further details regarding the products and comparison products brand wise, user can click on the legends for the same.
+    </div>
+  </div>
+  <script src="../js/main_waffle.js"></script>
+  <script src="../js/dynamic_waffle.js"></script>
+</body>
+
+</html>

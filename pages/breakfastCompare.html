@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Breakfast Compare</title>
+  <link rel="stylesheet" type="text/css" href="display.css">
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js"></script>
+  <style>
+    .main-container {
+      margin-top: 10px;
+      display: flex;
+      align-items: flex-start
+    }
+
+    .chart-container,
+    .chart-container1 {
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+    }
+
+    .chart-container1 {
+      display: none; /* Initially hidden */
+    }
+    .chart {
+      margin-top: 10px;
+      width: 700px;
+      height: 350px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #e39714;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #e14815;
+    }
+
+    .tooltip {
+  position: absolute;
+  padding: 4px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  pointer-events: none;
+  font-size: 12px;
+}
+body {
+      overflow: hidden;
+    }
+
+    .dropdown-container {
+      display: inline-block;
+    }
+
+    .legend-item {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .legend-item span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+  }
+
+  .legend-item .bar1-color {
+    background-color: #C7EFCF;
+  }
+
+  .legend-item .bar2-color {
+    background-color: #EEF5DB;
+  }
+  </style>
+</head>
+<body>
+<div>
+  <h1>Breakfast Comparison</h1>
+  <a href="../index.html" class="button">Home</a>
+
+</div>
+
+  <div class="main-container">
+    <div class="chart-container">
+      <div>
+        <p>Toggle Compare</p>
+      </div>
+      
+      <div class="checkbox-wrapper-22">
+        <label class="switch" for="compareCheckbox">
+          <input type="checkbox" id="compareCheckbox" />
+          <div class="slider round"></div>
+        </label>
+      </div>
+
+
+      <div class="dropdown-container">
+        <label for="dropdown1" style="padding-left: 60px; padding-bottom: 10px;">Select Cereal:</label>
+        <select id="dropdown1">
+          <option value="Costco_Corn_Frosted_Flakes">Costco Corn Frosted Flakes</option>
+          <option value="Costco_Oats_Oatmeal_Squares">Costco Oats Oatmeal Squares</option>
+          <option value="QFC_Corn_Corn_Flakes_Cereal">QFC Corn Corn Flakes Cereal</option>
+          <option value="QFC_Oats_Honey_N_Oats">QFC Oats Honey N Oats</option>
+          <option value="QFC_Rice_Crispy_Rice_Cereal">QFC Rice Crispy Rice Cereal</option>
+          <option value="QFC_Wheat_Shredded_Wheat_Cereal">QFC Wheat Shredded Wheat Cereal</option>
+          <option value="Target_Oats_Oops_All_Berries">Target Oats Oops All Berries</option>
+          <option value="Target_Rice_Organic Peanut Butter_Poppers">Target Rice Organic Peanut Butter Poppers</option>
+          <option value="Target_Wheat_Cinnamon_Toast_Crunch">Target Wheat Cinnamon Toast Crunch</option>
+          <option value="Whole_Foods_Corn_Peanut_Butter_Cocoa">Whole Foods Corn Peanut Butter Cocoa</option>
+          <option value="Whole_Foods_Oats_Cheerios_Honey_Nut">Whole Foods Oats Cheerios Honey Nut</option>
+          <option value="Whole_Foods_Wheat_Raisin_Bran">Whole Foods Wheat Raisin Bran</option>
+        </select>
+        </div>
+        <br>
+      <div>
+        <label for="dropdown2" style="padding-left: 60px; padding-top: 10px;">Select Milk:</label>
+        <select id="dropdown2">
+          <option value="Costco_2%_Kirkland">Costco 2% Kirkland</option>
+          <option value="Costco_Almond_Kirkland">Costco Almond Kirkland</option>
+          <option value="Costco_Oat_Kirkland">Costco Oat Kirkland</option>
+          <option value="Costco_Soy_Kirkland">Costco Soy Kirkland</option>
+          <option value="Fred_Meyer_1%_Simple_Truth_Organic">Fred Meyer 1% Simple Truth Organic</option>
+          <option value="Fred_Meyer_2%_Fred_Meyer">Fred Meyer 2% Fred Meyer</option>
+          <option value="Fred_Meyer_Almond_Silk">Fred Meyer Almond Silk</option>
+          <option value="Fred_Meyer_Oat_Planet_Oat">Fred Meyer Oat Planet Oat</option>
+          <option value="Fred_Meyer_Soy_Simple_Truth_Organic">Fred Meyer Soy Simple Truth Organic</option>
+          <option value="QfC_2%_Simple_Truth_Organic">QFC 2% Simple Truth Organic</option>
+          <option value="QFC_Almond_Simple_Truth">QFC Almond Simple Truth</option>
+          <option value="QfC_Oat_Silk">QFC Oat Silk</option>
+          <option value="QfC_Whole_Simple_Truth_Organic">QFC Whole Simple Truth Organic</option>
+          <option value="QFC_Soy_Simple_Truth">QFC Soy Simple Truth</option>
+          <option value="Target_2%_Good_and_Gather">Target 2% Good and Gather</option>
+          <option value="Target_Oat_Oatly">Target Oat Oatly</option>
+          <option value="Target_Whole_Darigold">Target Whole Darigold</option>
+          <option value="whole_foods_2%_Horizon_Organic">whole foods 2% Horizon Organic</option>
+          <option value="whole_foods_Almond_365">whole foods Almond 365</option>
+          <option value="whole_foods_Oat_Oatly">whole foods Oat Oatly</option>
+          <option value="whole_foods_Soy_WestSoy">whole foods Soy WestSoy</option>
+          <option value="whole_foods_Whole_Grace_Harbor_Farms">Whole foods Whole Grace Harbor Farms</option>
+        </select>
+      </div>
+
+      <div id="chart1" class="chart"></div>
+      <div id="chart2" class="chart"></div>
+      <script src="script.js"></script>
+    </div>
+
+    <div class="chart-container1">
+      <div style="padding-top: 85px;">
+        <label for="dropdown3" style="padding-left: 80px;">Select Cereal:</label>
+        <select id="dropdown3">
+          <option value="Costco_Corn_Frosted_Flakes">Costco Corn Frosted Flakes</option>
+          <option value="Costco_Oats_Oatmeal_Squares">Costco Oats Oatmeal Squares</option>
+          <option value="QFC_Corn_Corn_Flakes_Cereal">QFC Corn Corn Flakes Cereal</option>
+          <option value="QFC_Oats_Honey_N_Oats">QFC Oats Honey N Oats</option>
+          <option value="QFC_Rice_Crispy_Rice_Cereal">QFC Rice Crispy Rice Cereal</option>
+          <option value="QFC_Wheat_Shredded_Wheat_Cereal">QFC Wheat Shredded Wheat Cereal</option>
+          <option value="Target_Oats_Oops_All_Berries">Target Oats Oops All Berries</option>
+          <option value="Target_Rice_Organic Peanut Butter_Poppers">Target Rice Organic Peanut Butter Poppers</option>
+          <option value="Target_Wheat_Cinnamon_Toast_Crunch">Target Wheat Cinnamon Toast Crunch</option>
+          <option value="Whole_Foods_Corn_Peanut_Butter_Cocoa">Whole Foods Corn Peanut Butter Cocoa</option>
+          <option value="Whole_Foods_Oats_Cheerios_Honey_Nut">Whole Foods Oats Cheerios Honey Nut</option>
+          <option value="Whole_Foods_Wheat_Raisin_Bran">Whole Foods Wheat Raisin Bran</option>
+        </select>
+        </div>
+        <br>
+        <div>
+        <label for="dropdown4" style="padding-left: 80px;">Select Milk:</label>
+        <select id="dropdown4">
+          <option value="Costco_2%_Kirkland">Costco 2% Kirkland</option>
+          <option value="Costco_Almond_Kirkland">Costco Almond Kirkland</option>
+          <option value="Costco_Oat_Kirkland">Costco Oat Kirkland</option>
+          <option value="Costco_Soy_Kirkland">Costco Soy Kirkland</option>
+          <option value="Fred_Meyer_1%_Simple_Truth_Organic">Fred Meyer 1% Simple Truth Organic</option>
+          <option value="Fred_Meyer_2%_Fred_Meyer">Fred Meyer 2% Fred Meyer</option>
+          <option value="Fred_Meyer_Almond_Silk">Fred Meyer Almond Silk</option>
+          <option value="Fred_Meyer_Oat_Planet_Oat">Fred Meyer Oat Planet Oat</option>
+          <option value="Fred_Meyer_Soy_Simple_Truth_Organic">Fred Meyer Soy Simple Truth Organic</option>
+          <option value="QfC_2%_Simple_Truth_Organic">QFC 2% Simple Truth Organic</option>
+          <option value="QFC_Almond_Simple_Truth">QFC Almond Simple Truth</option>
+          <option value="QfC_Oat_Silk">QFC Oat Silk</option>
+          <option value="QfC_Whole_Simple_Truth_Organic">QFC Whole Simple Truth Organic</option>
+          <option value="QFC_Soy_Simple_Truth">QFC Soy Simple Truth</option>
+          <option value="Target_2%_Good_and_Gather">Target 2% Good and Gather</option>
+          <option value="Target_Oat_Oatly">Target Oat Oatly</option>
+          <option value="Target_Whole_Darigold">Target Whole Darigold</option>
+          <option value="whole_foods_2%_Horizon_Organic">whole foods 2% Horizon Organic</option>
+          <option value="whole_foods_Almond_365">whole foods Almond 365</option>
+          <option value="whole_foods_Oat_Oatly">whole foods Oat Oatly</option>
+          <option value="whole_foods_Soy_WestSoy">whole foods Soy WestSoy</option>
+          <option value="whole_foods_Whole_Grace_Harbor_Farms">Whole foods Whole Grace Harbor Farms</option>
+        </select>
+      </div>
+      <div id="chart3" class="chart"></div>
+      <div id="chart4" class="chart"></div>
+      
+    </div>
+  </div>
+
+  <script>
+    var compareCheckbox = document.getElementById('compareCheckbox');
+    var chartContainer1 = document.querySelector('.chart-container1');
+    var script1 = null;
+
+    compareCheckbox.addEventListener('change', function() {
+      if (this.checked) {
+        if (!script1) {
+          chartContainer1.style.display = 'flex';
+          script1 = document.createElement('script');
+          script1.src = 'script1.js';
+          document.body.appendChild(script1);
+        }
+      } else {
+        if (script1) {
+          location.reload(); // Refresh the page
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/x-icon" href="/images/favicon.png" />
+        <div class="button-container">
+            <a href="/index.html" class="button">Home</a>
+            <a href="../../main_waffle.html" class="button">Back</a>
+        </div>
+        <title>RadarChart-Milk-Dairy-1%</title>
+        <center>
+            <h4>Comparison of Brands for 1% Milk</h4>
+        </center>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <link href="/css/radar.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <center>
+            <div class="radarChart">
+                <div id="legendz"></div>
+            </div>
+        </center>
+        <script src="/js/radarChart.js"></script>
+        <script>
+            var margin = { top: 60, right: 60, bottom: 60, left: 60 },
+                width =
+                    Math.min(700, window.innerWidth - 10) -
+                    margin.left -
+                    margin.right,
+                height = Math.min(
+                    width,
+                    window.innerHeight - margin.top - margin.bottom - 20
+                );
+            var brands = [
+                "Fred Meyer",
+                "Kirkland",
+                "Kroger",
+                "Organic Valley",
+                "Simple Truth Organic",
+            ];
+            var data = [
+                [
+                    { axis: "Fats(g)", value: 2.5 },
+                    { axis: "Carbohydrates(g)", value: 12 },
+                    { axis: "Fiber(g)", value: 0 },
+                    { axis: "Sugars(g)", value: 6 },
+                    { axis: "Protein(g)", value: 8 },
+                ],
+                [
+                    { axis: "Fats(g)", value: 2.5 },
+                    { axis: "Carbohydrates(g)", value: 13 },
+                    { axis: "Fiber(g)", value: 0 },
+                    { axis: "Sugars(g)", value: 12 },
+                    { axis: "Protein(g)", value: 9 },
+                ],
+                [
+                    { axis: "Fats(g)", value: 2 },
+                    { axis: "Carbohydrates(g)", value: 10 },
+                    { axis: "Fiber(g)", value: 0 },
+                    { axis: "Sugars(g)", value: 12 },
+                    { axis: "Protein(g)", value: 7 },
+                ],
+                [
+                    { axis: "Fats(g)", value: 2.5 },
+                    { axis: "Carbohydrates(g)", value: 12 },
+                    { axis: "Fiber(g)", value: 0 },
+                    { axis: "Sugars(g)", value: 12 },
+                    { axis: "Protein(g)", value: 8 },
+                ],
+                [
+                    { axis: "Fats(g)", value: 3 },
+                    { axis: "Carbohydrates(g)", value: 12 },
+                    { axis: "Fiber(g)", value: 0 },
+                    { axis: "Sugars(g)", value: 11.5 },
+                    { axis: "Protein(g)", value: 6 },
+                ],
+            ];
+
+            var color = d3.scaleOrdinal([
+                "#1F77B4",
+                "#FF7F0E",
+                "#2CA02C",
+                "#D62728",
+                "#9467BD",
+                "#8C564B",
+                "#17BECF",
+                "#7F7F7F",
+                "#BCBD22",
+                "#E377C2",
+            ]);
+
+            var radarChartOptions = {
+                w: width,
+                h: height,
+                margin: margin,
+                maxValue: 0.5,
+                levels: 5,
+                roundStrokes: true,
+                color: color,
+            };
+
+            // Call the RadarChart function to generate the chart
+            RadarChart(".radarChart", data, brands, radarChartOptions);
+        </script>
+    </body>
+</html>
