@@ -88,10 +88,7 @@ healthy choice.
 ## Data Transformations: 
 We merged the data from different data csvs that we collected. We had to transpose the data to fit my 
 script requirements. For the cost, we had to scale the cost from per serving to a 30-day serving. 
-Reasons for changing from Circular Packing: 
-The professor's review helped us understand that circular packing charts would not be suitable in this 
-case and bar charts would better represent the visualization. Switching to a stacked bar chart was also 
-helpful as we were able to show the effect of milk and cereal in nutrient values and cost separately. 
+
 ## Design Rationale : 
 1. The stacked bar chart is helpful as it provides the total constituents of various nutrients in the 
 meal. This helps us highlight the number of nutrients added to milk and cereal separately. 
@@ -105,7 +102,7 @@ compare, he can toggle off the button, and the visualization changes to just one
 4. The visualization is flipped horizontally, and the Y axis represents different nutrients and the 
 X axis represents their value in grams for the 1st graph. The X-axis represents the cost in 
 dollars for the 2nd graph below the original visualization. 
-Visual Encoding: 
+## Visual Encoding: 
 We used a tooltip that displays the nutrient value and the cost value on hover. In a stacked bar chart, 
 for the bars away from the axis, it might sometimes get difficult to get the exact values of the graph, 
 thus adding a tooltip to display the bar value would help the user make an informed decision. 
@@ -115,6 +112,91 @@ other hand, if the user wanted to compare values with different cereal and milk 
 can easily do so by turning the toggle on. Two different colors were used, one for cereal and one for 
 milk. We made sure that those colors did not blend together and were appropriate for the data. 
 
+## Questions and Answers :
+Can we compare different cereal and milk combinations?
+- The Breakfast Comparison visualization helps us compare different combinations of 
+milk and cereal.
+- It would help user to visualize different nutrients and the cost associated with the meal
 <img width="608" alt="image" src="https://github.com/madhuroopa/Cerealicious/assets/22576343/a81ef396-f10f-4e6a-994e-673f2ae4996a">
 
+## Dot plot
+## Data Transformation : 
+The average serving size for breakfast consists of 1 cup of milk (approximately 240 ml) and 1 cup of 
+cereal (around 40 grams). Since milk is typically sold in gallons at the store, it needs to be converted 
+to milliliters for accurate measurement. Additionally, the price obtained for the whole can of milk 
+needs to be scaled down to match the 240 ml serving size. 
+Similarly, cereal boxes are usually measured in ounces, so they need to be converted to grams for 
+precise measurement. The price obtained for the whole box of cereal must also be adjusted to reflect 
+the 40 grams serving size. 
+Considering that Costco operates as a wholesaler, the milk and cereal are available in multiple 
+quantities. To ensure equal distribution among all stores, the price is scaled down for one quantity. 
+
+## Design Rationale : 
+1. We used a dot plot to compare the cost of breakfast per serving. The breakfast includes 1 cup 
+of milk (approximately 240 ml) and 1 cup of cereal (around 40 grams). 
+2. From our prior visualizations, we found that Whole Milk, Low Fat Milk, and Reduced Fat 
+Milk are the three cheapest options. You can use the drop-down menu to compare the cost of 
+each cereal with these milk options. 
+3. We compared the cost per serving of different cereals, such as Raisin Bran, Cheerios, Fruit 
+Loops, and Frosted Flakes. 
+4. For the visual encoding, we opted to use colors that correspond to the logo colors of the 
+respective stores. This was done to provide an intuitive link between the stores and their 
+representation in the plot. We made an exception with Fred Mayer, assigning it a unique 
+color, due to its logo color being similar to that of Costco's to prevent confusion. 
+5. Each dot on the plot represents a different breakfast option at a given store, allowing for easy 
+comparison 
+6. The visualization aims to determine the most affordable store for breakfast. We compared 
+wholesale stores like Costco and Target, as well as retail outlets like QFC, Whole Foods, and 
+Fred Meyer. 
+7. The interactive legend helps compare different breakfast combinations within the same store 
+to find the best option. 
+8. Tooltips have been added to provide additional information such as milk and cereal type, 
+store name, and cost per serving when hovering over specific data points 
+9. This “Comparative Analysis” helps individuals on a tight budget in finding the store with the 
+most economical breakfast prices.
+
+## Questions and Answers :
+What is the most affordable breakfast option per serving?
+- The most affordable breakfast option per serving is the combination of reduced-fat milk and 
+frosted flakes, at Costco.
+- Among the stores, Costco consistently offers the best prices for affordable breakfast 
+combinations. Surprisingly, Fred Meyer, a retail store, offers lower prices compared to Target.
+This finding highlights the importance of exploring different stores to find the most 
+cost-effective breakfast options.
+- Notably, Fruit Loops tend to be more expensive at QFC compared to other cereals.
+- This information helps individuals make cost-effective choices for their breakfast needs
+
+<img width="613" alt="image" src="https://github.com/madhuroopa/Cerealicious/assets/22576343/82265f0f-5dfc-48c7-91cb-bf27d1d58633">
+
+## Lolipop chart
+
+## Data Transformations: 
+We collected the dataset from the BBC report and the data was clean. I merged the dataset for 
+different environmental factors using Excel. 
+
+## Design Rationale:
+The lollipop chart helps us visualize the environmental impact of a glass of milk. For this,, we chose 
+to build a lollipop chart as it is great at showing values and also the difference in values for different 
+labels. This helps us give a numerical value to the environmental impact and highlight how low the 
+impact is for another type of milk. 
+
+## Visual Encoding: 
+The chart has three buttons for visualizing different environmental impacts. The Y-axis scale changes 
+according to the button selected and the unit on Y axis changes. The X-axis represents different types 
+of milk and they are static
+
+## Questions
+What are the environmentalimpacts of a glass of milk?
+## Answer
+Dairy Milk has the mostenvironmental impact
+
+<img width="465" alt="image" src="https://github.com/madhuroopa/Cerealicious/assets/22576343/af821078-a89b-440e-9001-b6de6a32e177">
+
+
+## Future Work
+- We can collect more data from different stores.
+- Visualizing the different additives and preservative amounts in different milk 
+and cereals.
+- Collecting the sales data to find out which type is most popular.
+- Performing surveys on different milk type
 
