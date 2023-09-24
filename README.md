@@ -192,7 +192,8 @@ Dairy Milk has the mostenvironmental impact
 
 <img width="465" alt="image" src="https://github.com/madhuroopa/Cerealicious/assets/22576343/af821078-a89b-440e-9001-b6de6a32e177">
 
-
+## Hosted Website on AWS
+# http://www.cerealacious.com.s3-website-us-east-1.amazonaws.com
 ## Future Work
 - We can collect more data from different stores.
 - Visualizing the different additives and preservative amounts in different milk 
